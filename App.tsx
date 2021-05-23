@@ -10,6 +10,7 @@
 
 import 'react-native-gesture-handler';
 import React from 'react';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -20,6 +21,10 @@ import {
   View,
 } from 'react-native';
 
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {enableScreens} from 'react-native-screens';
+
 import {
   Colors,
   DebugInstructions,
@@ -27,7 +32,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import {NavigationContainer} from '@react-navigation/native';
+// import {NavigationContainer} from '@react-navigation/native';
 
 const Section: React.FC<{
   title: string;
@@ -57,6 +62,14 @@ const Section: React.FC<{
   );
 };
 
+const HomeScreen = () => (
+  <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <Text>Home Screen</Text>
+  </View>
+);
+
+const Stack = createStackNavigator();
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -64,14 +77,18 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  enableScreens();
+
   return (
     <NavigationContainer>
-      <SafeAreaView style={backgroundStyle}>
+      <Stack.Navigator>
+        {/* <SafeAreaView style={backgroundStyle}>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={backgroundStyle}>
           <Header />
+          <HomeScreen />
           <View
             style={{
               backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -92,7 +109,9 @@ const App = () => {
             <LearnMoreLinks />
           </View>
         </ScrollView>
-      </SafeAreaView>
+      </SafeAreaView> */}
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

@@ -31,13 +31,23 @@ static void InitializeFlipper(UIApplication *application) {
   InitializeFlipper(application);
 #endif
 
+//  RCTBridge *bridge = [[RCTBridge alloc] initWithBundleURL:jsCodeLocation
+//                                            moduleProvider:nil
+//                                             launchOptions:launchOptions];
+//#if RCT_DEV
+//  [bridge moduleForClass:[RCTDevLoadingView class]];
+//#endif
+//  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
+//                                                   moduleName:@"reactnativetypescriptstudy"
+//                                            initialProperties:nil];
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"reactnativetypescriptstudy"
                                             initialProperties:nil];
 
-  if (@available(iOS 13.0, *)) {
+    if (@available(iOS 13.0, *)) {
       rootView.backgroundColor = [UIColor systemBackgroundColor];
+  
   } else {
       rootView.backgroundColor = [UIColor whiteColor];
   }
